@@ -1,7 +1,11 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from api.routers import task, done
 
-@app.get("/")
-def hello():
-    return {"message": "Hello FastAPI!"}
+app = FastAPI(
+    title="Todo API",
+    version="0.1.0",
+    description="Simple todo app built with FastAPI.",
+)
+app.include_router(task.router)
+app.include_router(done.router)
